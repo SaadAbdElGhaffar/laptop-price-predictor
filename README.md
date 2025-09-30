@@ -227,9 +227,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Links
 
-- **GitHub Repository**: https://github.com/SaadAbdElGhaffar/laptop-price-predictor
-- **Kaggle Notebook**: https://www.kaggle.com/code/abdocan/laptop-price-predictor-91-0-216-mae-0-292-rmse/notebook
-- **Dataset Source**: https://www.kaggle.com/datasets/ehtishamsadiq/uncleaned-laptop-price-dataset
+- **GitHub Repository**: [Link](https://github.com/SaadAbdElGhaffar/laptop-price-predictor)
+- **Kaggle Notebook**: [Link](https://www.kaggle.com/code/abdocan/laptop-price-predictor-91-0-216-mae-0-292-rmse/notebook)
+- **Dataset Source**: [Link](https://www.kaggle.com/datasets/ehtishamsadiq/uncleaned-laptop-price-dataset)
 
 ## Contact
 
