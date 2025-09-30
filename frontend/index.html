@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laptop Price Predictor</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-3xl font-bold text-center mb-6">Laptop Price Predictor</h1>
+        <div class="bg-white p-6 rounded-lg shadow-lg">
+            <div class="form-group">
+                <label for="Company">Company</label>
+                <select id="Company" name="Company">
+                    <option value="Acer">Acer</option>
+                    <option value="Apple">Apple</option>
+                    <option value="Asus">Asus</option>
+                    <option value="Dell">Dell</option>
+                    <option value="HP">HP</option>
+                    <option value="Lenovo">Lenovo</option>
+                    <option value="Toshiba">Toshiba</option>
+                    <option value="MSI">MSI</option>
+                    <option value="Samsung">Samsung</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="TypeName">Type</label>
+                <select id="TypeName" name="TypeName">
+                    <option value="Notebook">Notebook</option>
+                    <option value="Gaming">Gaming</option>
+                    <option value="Ultrabook">Ultrabook</option>
+                    <option value="2 in 1 Convertible">2 in 1 Convertible</option>
+                    <option value="Workstation">Workstation</option>
+                    <option value="Netbook">Netbook</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="Ram">RAM (GB)</label>
+                <input type="number" id="Ram" name="Ram" value="8" min="2" max="64">
+            </div>
+            <div class="form-group">
+                <label for="Weight">Weight (kg)</label>
+                <input type="number" id="Weight" name="Weight" value="2.0" step="0.1" min="0.5" max="5.0">
+            </div>
+            <div class="form-group">
+                <label for="Touchscreen">Touchscreen</label>
+                <select id="Touchscreen" name="Touchscreen">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="Ips">IPS Display</label>
+                <select id="Ips" name="Ips">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="Ppi">PPI (Pixels Per Inch)</label>
+                <input type="number" id="Ppi" name="Ppi" value="141.21" step="0.01" min="100" max="400">
+            </div>
+            <div class="form-group">
+                <label for="Cpu">CPU</label>
+                <select id="Cpu" name="Cpu">
+                    <option value="Intel Core i3">Intel Core i3</option>
+                    <option value="Intel Core i5">Intel Core i5</option>
+                    <option value="Intel Core i7">Intel Core i7</option>
+                    <option value="AMD">AMD</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="HDD">HDD (GB)</label>
+                <input type="number" id="HDD" name="HDD" value="0" min="0" max="2000">
+            </div>
+            <div class="form-group">
+                <label for="SSD">SSD (GB)</label>
+                <input type="number" id="SSD" name="SSD" value="256" min="0" max="2000">
+            </div>
+            <div class="form-group">
+                <label for="Gpu">GPU</label>
+                <select id="Gpu" name="Gpu">
+                    <option value="Intel">Intel</option>
+                    <option value="Nvidia">Nvidia</option>
+                    <option value="AMD">AMD</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="OpSys">Operating System</label>
+                <select id="OpSys" name="OpSys">
+                    <option value="Windows">Windows</option>
+                    <option value="macOS">macOS</option>
+                    <option value="Linux">Linux</option>
+                    <option value="No OS">No OS</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            <button class="btn w-full" onclick="predictPrice()">Predict Price</button>
+            <div id="result" class="text-center"></div>
+        </div>
+    </div>
+
+    <script src="static/js/script.js"></script>
+</body>
+</html>

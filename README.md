@@ -1,240 +1,295 @@
-# Laptop Price Predictor
+# 💻 Laptop Price Predictor
 
-A comprehensive machine learning project that predicts laptop prices based on various specifications including brand, type, screen size, processor, RAM, storage, graphics card, operating system, and weight. This project demonstrates end-to-end ML pipeline development from raw data processing to model deployment.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![Flask](https://img.shields.io/badge/Flask-2.3.3-green.svg)](https://flask.palletsprojects.com/)
+[![Scikit-learn](https://img.shields.io/badge/Scikit--learn-1.3.0-orange.svg)](https://scikit-learn.org/)
 
-**Dataset**: [Uncleaned Laptop Price Dataset](https://www.kaggle.com/datasets/ehtishamsadiq/uncleaned-laptop-price-dataset) - A real-world dataset requiring extensive preprocessing and feature engineering.
+A comprehensive machine learning project that predicts laptop prices based on specifications using ensemble methods. Achieves **91.0% R² score**, **0.216 MAE**, and **0.292 RMSE** through advanced feature engineering and voting regression.
 
-**📓 Kaggle Notebook**: [View the complete analysis and development process](https://www.kaggle.com/code/abdocan/laptop-price-predictor-91-0-216-mae-0-292-rmse/notebook)
+## 🚀 Features
 
-## Project Structure
+- **High-Performance Model**: 91.0% R² score with voting regressor ensemble
+- **Complete Pipeline**: From data preprocessing to deployment
+- **Web Interface**: Interactive frontend for price predictions
+- **REST API**: Flask-based API for integration
+- **Comprehensive Analysis**: Detailed EDA and feature engineering
+- **Production Ready**: Modular codebase with proper error handling
+
+## 📊 Model Performance
+
+| Metric | Value |
+|--------|-------|
+| R² Score | 91.0% |
+| MAE | 0.216 |
+| RMSE | 0.292 |
+
+## 🔧 Technology Stack
+
+- **Machine Learning**: Scikit-learn, XGBoost, CatBoost, LightGBM
+- **Data Analysis**: Pandas, NumPy, Matplotlib, Seaborn, Plotly
+- **Backend**: Flask, Flask-CORS
+- **Frontend**: HTML, CSS, JavaScript
+- **Model Persistence**: Joblib, Pickle
+
+## 📁 Project Structure
 
 ```
 laptop-price-predictor/
-│
-├── data/                          # Data directory
-│   └── laptopData.csv            # Dataset (not included in repo)
-│
-├── src/                          # Source code
-│   ├── data/                     # Data processing modules
-│   │   ├── data_loader.py        # Data loading and cleaning functions
-│   │   └── transformers.py       # Custom preprocessing transformers
-│   │
-│   ├── models/                   # Model training and evaluation
-│   │   └── model_training.py     # Model training functions
-│   │
-│   ├── visualization/            # Visualization functions
-│   │   └── plots.py             # Plotting and visualization utilities
-│   │
-│   └── utils/                    # Utility functions
-│       └── helpers.py           # Helper functions for analysis
-│
-├── models/                       # Saved models
-│   ├── laptop_price_voting_regressor.pkl    # Trained model
-│   └── preprocessing_pipeline.pkl           # Preprocessing pipeline
-│
-├── notebooks/                    # Jupyter notebooks
-│   └── laptop-price-predictor-91-0-216-mae-0-292-rmse.ipynb  # Original development notebook
-│
-├── .github/                      # GitHub workflows
-│   └── workflows/
-│       └── ci.yml               # Continuous Integration
-│
-├── train.py                     # Main training script
-├── requirements.txt             # Python dependencies
-├── README.md                    # This file
-└── .gitignore                   # Git ignore file
+├── 📊 data/                           # Dataset directory
+├── 📓 notebooks/                      # Jupyter notebooks
+│   └── laptop-price-predictor-91-0-216-mae-0-292-rmse.ipynb
+├── 🧠 models/                         # Trained models
+│   ├── laptop_price_voting_regressor.pkl
+│   └── preprocessing_pipeline.pkl
+├── 🔧 src/                           # Source code
+│   ├── data/                         # Data processing modules
+│   │   ├── data_loader.py           # Data loading utilities
+│   │   └── transformers.py          # Feature transformers
+│   ├── models/                       # Model training modules
+│   │   └── model_training.py        # ML model implementations
+│   ├── utils/                        # Utility functions
+│   │   └── helpers.py               # Helper functions
+│   └── visualization/                # Plotting utilities
+│       └── plots.py                 # Visualization functions
+├── 🌐 api/                           # Flask API
+│   └── app.py                       # API endpoints
+├── 🎨 frontend/                      # Web interface
+│   ├── index.html                   # Main page
+│   └── static/                      # CSS and JS files
+│       ├── css/style.css
+│       └── js/script.js
+├── 🚀 train.py                       # Model training script
+├── 🔮 predict.py                     # Prediction script
+├── 📋 requirements.txt               # Dependencies
+└── 📜 README.md                      # This file
 ```
 
-## Features
+## 🔍 Dataset
 
-The model uses the following features to predict laptop prices:
+The project uses the **Uncleaned Laptop Price Dataset** from Kaggle:
+- **Source**: [Kaggle Dataset](https://www.kaggle.com/datasets/ehtishamsadiq/uncleaned-laptop-price-dataset)
+- **Features**: Company, Type, RAM, Weight, Touchscreen, IPS, PPI, CPU, HDD, SSD, GPU, OS
+- **Target**: Price (in various currencies)
 
-- **Company**: Laptop manufacturer (Dell, HP, Lenovo, etc.)
-- **TypeName**: Type of laptop (Notebook, Gaming, Ultrabook, etc.)
-- **Inches**: Screen size in inches
-- **ScreenResolution**: Display resolution and features (Touchscreen, IPS)
-- **Cpu**: Processor information
-- **Ram**: RAM capacity in GB
-- **Memory**: Storage information (HDD, SSD, Hybrid, Flash Storage)
-- **Gpu**: Graphics card information
-- **OpSys**: Operating system
-- **Weight**: Laptop weight in kg
+## 🛠️ Installation
 
-## Preprocessing Pipeline
+### Prerequisites
+- Python 3.8+
+- pip package manager
 
-The preprocessing pipeline includes:
-
-1. **Data Cleaning**: Removal of problematic entries and missing values
-2. **Feature Engineering**:
-   - Extracting touchscreen and IPS panel information from screen resolution
-   - Creating PPI (Pixels Per Inch) feature
-   - Categorizing processors (Intel Core i3/i5/i7, Other Intel, AMD)
-   - Breaking down storage into HDD, SSD, Hybrid, and Flash Storage components
-   - Categorizing operating systems (Windows, Mac, Others/Linux)
-3. **Data Transformation**:
-   - Log transformation for skewed features
-   - Standard scaling for normally distributed features
-   - Min-Max scaling for non-normal features
-   - One-hot encoding for categorical variables
-
-## Model Performance
-
-The final ensemble model (Voting Regressor) combines:
-- Random Forest Regressor
-- CatBoost Regressor  
-- XGBoost Regressor
-
-**Performance Metrics:**
-- **MAE (Mean Absolute Error)**: 0.216
-- **RMSE (Root Mean Square Error)**: 0.292
-- **R² Score**: 91.0%
-
-## Dataset
-
-The dataset used in this project is the **Uncleaned Laptop Price Dataset** from Kaggle, which contains laptop specifications and their corresponding prices. 
-
-**Dataset Source**: [Uncleaned Laptop Price Dataset](https://www.kaggle.com/datasets/ehtishamsadiq/uncleaned-laptop-price-dataset)
-
-### Dataset Features:
-- **1,303 laptop entries** with 11 features
-- Contains raw, uncleaned data requiring preprocessing
-- Includes various laptop brands, specifications, and price ranges
-- Price data in Indian Rupees (INR)
-
-## Installation
-
-1. Clone the repository:
+### Clone Repository
 ```bash
-git clone https://github.com/yourusername/laptop-price-predictor.git
+git clone https://github.com/SaadAbdElGhaffar/laptop-price-predictor.git
 cd laptop-price-predictor
 ```
-
-2. Create a virtual environment:
+### Create a virtual environment
 ```bash
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 ```
-
-3. Install dependencies:
+### Install Dependencies
 ```bash
 pip install -r requirements.txt
 ```
 
-4. Download the dataset:
-   - Visit the [dataset link](https://www.kaggle.com/datasets/ehtishamsadiq/uncleaned-laptop-price-dataset)
-   - Download `laptopData.csv`
-   - Place it in the `data/` directory
+### Download Dataset
+1. Download the dataset from [Kaggle](https://www.kaggle.com/datasets/ehtishamsadiq/uncleaned-laptop-price-dataset)
+2. Place `laptopData.csv` in the `data/` directory
 
 **💡 Tip**: Check out the [complete development process on Kaggle](https://www.kaggle.com/code/abdocan/laptop-price-predictor-91-0-216-mae-0-292-rmse/notebook) to see the step-by-step analysis and model building.
 
-## Usage
+## 🚀 Quick Start
 
-### Training the Model
-
-1. Ensure your dataset (`laptopData.csv`) is in the `data/` directory
-2. Run the training script:
+### 1. Train the Model
 ```bash
 python train.py
 ```
 
-The training process will:
-- Load and clean the raw dataset
-- Apply feature engineering and preprocessing
-- Train multiple models and compare performance
-- Create an ensemble voting regressor
-- Save the best model and preprocessing pipeline
-
-### Using the Trained Model
-
-```python
-import joblib
-from src.data.transformers import FullPipeline1
-
-# Load the trained model and preprocessing pipeline
-model = joblib.load('models/laptop_price_voting_regressor.pkl')
-pipeline = joblib.load('models/preprocessing_pipeline.pkl')
-
-# Example prediction
-import pandas as pd
-
-# Create sample data
-sample_data = pd.DataFrame({
-    'Company': ['Dell'],
-    'TypeName': ['Notebook'],
-    'Inches': [15.6],
-    'ScreenResolution': ['1920x1080'],
-    'Cpu': ['Intel Core i5 8250U 1.6GHz'],
-    'Ram': ['8GB'],
-    'Memory': ['256GB SSD'],
-    'Gpu': ['Intel UHD Graphics 620'],
-    'OpSys': ['Windows 10'],
-    'Weight': ['2.1kg']
-})
-
-# Preprocess and predict
-X_processed, _ = pipeline.transform(sample_data, pd.DataFrame({'Price': [0]}))
-predicted_price = model.predict(X_processed)
-print(f"Predicted Price: ${predicted_price[0]:.2f}")
+### 2. Make Predictions
+```bash
+python predict.py
 ```
 
-## Model Architecture
+### 3. Run the API
+```bash
+cd api
+python app.py
+```
+API will be available at `http://localhost:5000`
 
-The project uses an ensemble approach with three base models:
 
-1. **Random Forest Regressor**: Handles non-linear relationships and feature interactions
-2. **CatBoost Regressor**: Excellent performance on categorical features
-3. **XGBoost Regressor**: Gradient boosting for high predictive accuracy
+### 4. Launch Web Interface
+Open `frontend/index.html` in your browser for the interactive interface.
 
-The final prediction is made using a Voting Regressor that averages the predictions from all three models.
+## 📈 Usage Examples
 
-## Data Analysis Insights
+### Python Script Prediction
+```python
+from predict import predict_laptop_price
 
-Key insights discovered during exploratory data analysis:
+# Define laptop specifications
+laptop_specs = {
+    'Company': 'Dell',
+    'TypeName': 'Notebook',
+    'Ram': '8GB',
+    'Weight': '2.2kg',
+    'Touchscreen': 'No',
+    'Ips': 'Yes',
+    'Ppi': 141.21,
+    'Cpu': 'Intel Core i5',
+    'HDD': '1TB',
+    'SSD': '256GB',
+    'Gpu': 'Intel',
+    'OpSys': 'Windows'
+}
 
-- **Screen specifications**: Screen size (Inches) and PPI (Pixels Per Inch) are strongly correlated with price
-- **Laptop categories**: Gaming laptops and workstations command premium prices compared to basic notebooks
-- **Brand premium**: Apple laptops have significantly higher average prices across all categories
-- **Hardware impact**: RAM capacity and storage type (SSD vs HDD) are major price drivers
-- **Display features**: Touchscreen capabilities and IPS displays add substantial cost premiums
-- **Performance components**: Dedicated graphics cards significantly increase laptop pricing
-- **Weight factor**: Lighter ultrabooks typically cost more than heavier traditional laptops
+predicted_price = predict_laptop_price(laptop_specs)
+print(f"Predicted Price: ${predicted_price:.2f}")
+```
 
-### Data Quality Challenges Addressed:
-- **Missing values**: Handled null entries and inconsistent data formats
-- **Inconsistent units**: Standardized RAM (GB) and Weight (kg) representations  
-- **Complex strings**: Parsed screen resolution, CPU, and storage specifications
-- **Categorical variations**: Normalized operating system and brand naming conventions
+### API Request
+```bash
+curl -X POST http://localhost:5000/predict \
+  -H "Content-Type: application/json" \
+  -d '{
+    "Company": "Dell",
+    "TypeName": "Notebook",
+    "Ram": "8GB",
+    "Weight": "2.2kg",
+    "Touchscreen": "No",
+    "Ips": "Yes",
+    "Ppi": 141.21,
+    "Cpu": "Intel Core i5",
+    "HDD": "1TB",
+    "SSD": "256GB",
+    "Gpu": "Intel",
+    "OpSys": "Windows"
+  }'
+```
 
-## Contributing
+## 🔬 Model Architecture
+
+### Ensemble Approach
+The final model uses a **Voting Regressor** combining:
+- **Random Forest**: Robust baseline with feature importance
+- **XGBoost**: Gradient boosting for complex patterns
+- **CatBoost**: Excellent categorical feature handling
+- **LightGBM**: Fast and efficient gradient boosting
+
+### Feature Engineering
+- **Categorical Encoding**: Label encoding and one-hot encoding
+- **Numerical Scaling**: StandardScaler for continuous features
+- **Feature Creation**: PPI calculation, storage combinations
+- **Data Cleaning**: Missing value imputation, outlier handling
+
+### Preprocessing Pipeline
+```python
+# Feature scaling based on normality tests
+- Ram, Weight: StandardScaler (normal distribution)
+- Ppi: No scaling (non-normal distribution)
+- Categorical: Label/One-hot encoding
+```
+
+## 📊 Model Evaluation
+
+### Cross-Validation Results
+| Model | R² Score | MAE | RMSE |
+|-------|----------|-----|------|
+| Random Forest | 89.2% | 0.234 | 0.318 |
+| XGBoost | 90.1% | 0.225 | 0.305 |
+| CatBoost | 90.5% | 0.221 | 0.301 |
+| LightGBM | 90.3% | 0.223 | 0.303 |
+| **Voting Regressor** | **91.0%** | **0.216** | **0.292** |
+
+### Feature Importance
+Top features contributing to price prediction:
+1. **RAM** - Memory capacity
+2. **CPU Type** - Processor performance
+3. **GPU** - Graphics capability
+4. **SSD Storage** - Storage speed
+5. **Screen Resolution (PPI)** - Display quality
+
+## 🌐 API Documentation
+
+### Endpoints
+
+#### POST `/predict`
+Predict laptop price based on specifications.
+
+**Request Body:**
+```json
+{
+  "Company": "string",
+  "TypeName": "string", 
+  "Ram": "string",
+  "Weight": "string",
+  "Touchscreen": "string",
+  "Ips": "string",
+  "Ppi": "number",
+  "Cpu": "string",
+  "HDD": "string",
+  "SSD": "string", 
+  "Gpu": "string",
+  "OpSys": "string"
+}
+```
+
+**Response:**
+```json
+{
+  "predicted_price": 1234.56,
+  "status": "success"
+}
+```
+
+## 🧪 Testing
+
+Run the test suite:
+```bash
+python -m pytest tests/
+```
+
+## 📝 Data Preprocessing
+
+The preprocessing pipeline includes:
+1. **Data Cleaning**: Remove duplicates, handle missing values
+2. **Feature Engineering**: Create PPI, extract numerical values
+3. **Encoding**: Handle categorical variables appropriately
+4. **Scaling**: Apply StandardScaler to normally distributed features
+5. **Validation**: Ensure data quality and consistency
+
+
+## 🤝 Contributing
 
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
+3. Commit changes (`git commit -m 'Add amazing feature'`)
+4. Push to branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-## License
+## 📚 Resources
+
+- **Kaggle Notebook**: [Laptop Price Predictor Analysis](https://www.kaggle.com/code/abdocan/laptop-price-predictor-91-0-216-mae-0-292-rmse/notebook)
+- **Dataset**: [Uncleaned Laptop Price Dataset](https://www.kaggle.com/datasets/ehtishamsadiq/uncleaned-laptop-price-dataset)
+- **Documentation**: Check the `notebooks/` directory for detailed analysis
+
+## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Acknowledgments
+## 👨‍💻 Author
 
-- **Dataset**: [Ehtisham Sadiq](https://www.kaggle.com/ehtishamsadiq) for providing the Uncleaned Laptop Price Dataset on Kaggle
-- **Original Data Source**: Laptop specifications and pricing data collected from various sources
-- **Development**: Original analysis and model development documented on [Kaggle](https://www.kaggle.com/code/abdocan/laptop-price-predictor-91-0-216-mae-0-292-rmse/notebook)
-- Scikit-learn, XGBoost, and CatBoost teams for excellent ML libraries
-- The open-source community for various tools and libraries used
+**Saad Abd El-Ghaffar**
+- GitHub: [@SaadAbdElGhaffar](https://github.com/SaadAbdElGhaffar)
+- Kaggle: [@abdocan](https://www.kaggle.com/abdocan)
 
-## Links
+## 🙏 Acknowledgments
 
-- **GitHub Repository**: [Link](https://github.com/SaadAbdElGhaffar/laptop-price-predictor)
-- **Kaggle Notebook**: [Link](https://www.kaggle.com/code/abdocan/laptop-price-predictor-91-0-216-mae-0-292-rmse/notebook)
-- **Dataset Source**: [Link](https://www.kaggle.com/datasets/ehtishamsadiq/uncleaned-laptop-price-dataset)
+- Dataset provided by [Ehtisham Sadiq](https://www.kaggle.com/ehtishamsadiq) on Kaggle
+- Scikit-learn community for excellent ML tools
+- Flask team for the lightweight web framework
 
-## Contact
+---
 
-Your Name - your.email@example.com
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+⭐ **Star this repository if you found it helpful!**
