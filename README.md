@@ -10,8 +10,9 @@ A comprehensive machine learning project that predicts laptop prices based on sp
 ## 🎥 Demo Video
 [Watch Demo](video/video.mp4) 
 ## Screenshots
-![Screenshot 1](video/image1.jpg) 
-![Screenshot 2](video/image2.jpg)
+![Screenshot 1](video/image1.jpg)
+![Screenshot 2](video/image3.jpg)
+![Screenshot 3](video/image2.jpg)
 ## 🚀 Features
 
 - **High-Performance Model**: 91.0% R² score with voting regressor ensemble
