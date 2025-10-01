@@ -7,14 +7,19 @@
 
 A comprehensive machine learning project that predicts laptop prices based on specifications using ensemble methods. Achieves **91.0% R² score**, **0.216 MAE**, and **0.292 RMSE** through advanced feature engineering and voting regression.
 
+## 🎥 Demo Video
+
+<video src="video/video.mp4" controls width="600"></video>
+
 ## 🚀 Features
 
 - **High-Performance Model**: 91.0% R² score with voting regressor ensemble
 - **Complete Pipeline**: From data preprocessing to deployment
-- **Web Interface**: Interactive frontend for price predictions
+- **Enhanced Web Interface**: Interactive frontend with improved input fields
 - **REST API**: Flask-based API for integration
 - **Comprehensive Analysis**: Detailed EDA and feature engineering
 - **Production Ready**: Modular codebase with proper error handling
+- **Video Demonstration**: Includes demo video showing the complete workflow
 
 ## 📊 Model Performance
 
@@ -40,8 +45,8 @@ laptop-price-predictor/
 ├── 📓 notebooks/                      # Jupyter notebooks
 │   └── laptop-price-predictor-91-0-216-mae-0-292-rmse.ipynb
 ├── 🧠 models/                         # Trained models
-│   ├── laptop_price_voting_regressor.pkl
-│   └── preprocessing_pipeline.pkl
+│   ├── laptop_price_voting_regressor1.pkl
+│   └── fitted_fullpipeline1.pkl
 ├── 🔧 src/                           # Source code
 │   ├── data/                         # Data processing modules
 │   │   ├── data_loader.py           # Data loading utilities
@@ -55,10 +60,12 @@ laptop-price-predictor/
 ├── 🌐 api/                           # Flask API
 │   └── app.py                       # API endpoints
 ├── 🎨 frontend/                      # Web interface
-│   ├── index.html                   # Main page
+│   ├── index.html                   # Main page with enhanced form
 │   └── static/                      # CSS and JS files
 │       ├── css/style.css
 │       └── js/script.js
+├── 🎥 video/                         # Demo video
+│   └── video.mp4                    # Project demonstration video
 ├── 🚀 train.py                       # Model training script
 ├── 🔮 predict.py                     # Prediction script
 ├── 📋 requirements.txt               # Dependencies
@@ -122,30 +129,53 @@ API will be available at `http://localhost:5000`
 ### 4. Launch Web Interface
 Open `frontend/index.html` in your browser for the interactive interface.
 
+### 5. Watch Demo Video
+Check out the demonstration video in the `video/` folder to see the complete workflow and features in action.
+
+## 🌐 Enhanced Web Interface
+
+The web interface has been improved with:
+- **Detailed Input Fields**: Screen size, resolution, RAM, storage (HDD/SSD), and weight as separate numeric inputs
+- **User-Friendly Form**: Dropdown menus for categorical selections
+- **Real-time Validation**: Input validation for better user experience
+- **Responsive Design**: Works on desktop and mobile devices
+
+### Input Fields:
+- **Company**: Dropdown with major laptop manufacturers
+- **Type**: Notebook, Gaming, Ultrabook, 2-in-1 Convertible, Workstation, Netbook
+- **Screen Size**: Numeric input in inches (10-20)
+- **Screen Resolution**: Dropdown with common resolutions (1366x768 to 4K)
+- **CPU**: Intel Core i3/i5/i7, AMD, Other
+- **RAM**: Numeric input in GB (2-64)
+- **HDD**: Numeric input in GB (0-2000)
+- **SSD**: Numeric input in GB (0-2000)
+- **GPU**: Intel, Nvidia, AMD
+- **Operating System**: Windows, macOS, Linux, No OS, Other
+- **Weight**: Numeric input in kg (0.5-5.0)
+
 ## 📈 Usage Examples
 
 ### Python Script Prediction
 ```python
 from predict import predict_laptop_price
 
-# Define laptop specifications
+# Define laptop specifications (enhanced input format)
 laptop_specs = {
     'Company': 'Dell',
     'TypeName': 'Notebook',
-    'Ram': '8GB',
-    'Weight': '2.2kg',
-    'Touchscreen': 'No',
-    'Ips': 'Yes',
-    'Ppi': 141.21,
+    'Inches': '15.6',
+    'ScreenResolution': '1920x1080',
+    'Ram': '8',
+    'Weight': '2.2',
     'Cpu': 'Intel Core i5',
-    'HDD': '1TB',
-    'SSD': '256GB',
+    'HDD': '1000',
+    'SSD': '256',
     'Gpu': 'Intel',
     'OpSys': 'Windows'
 }
 
 predicted_price = predict_laptop_price(laptop_specs)
-print(f"Predicted Price: ${predicted_price:.2f}")
+print(f"Predicted Price: ₹{predicted_price:.2f}")
 ```
 
 ### API Request
@@ -155,14 +185,13 @@ curl -X POST http://localhost:5000/predict \
   -d '{
     "Company": "Dell",
     "TypeName": "Notebook",
-    "Ram": "8GB",
-    "Weight": "2.2kg",
-    "Touchscreen": "No",
-    "Ips": "Yes",
-    "Ppi": 141.21,
+    "Inches": "15.6",
+    "ScreenResolution": "1920x1080",
+    "Ram": "8",
+    "Weight": "2.2",
     "Cpu": "Intel Core i5",
-    "HDD": "1TB",
-    "SSD": "256GB",
+    "HDD": "1000",
+    "SSD": "256",
     "Gpu": "Intel",
     "OpSys": "Windows"
   }'
@@ -222,11 +251,10 @@ Predict laptop price based on specifications.
 {
   "Company": "string",
   "TypeName": "string", 
+  "Inches": "string",
+  "ScreenResolution": "string",
   "Ram": "string",
   "Weight": "string",
-  "Touchscreen": "string",
-  "Ips": "string",
-  "Ppi": "number",
   "Cpu": "string",
   "HDD": "string",
   "SSD": "string", 
@@ -238,8 +266,7 @@ Predict laptop price based on specifications.
 **Response:**
 ```json
 {
-  "predicted_price": 1234.56,
-  "status": "success"
+  "price": 45000.50
 }
 ```
 

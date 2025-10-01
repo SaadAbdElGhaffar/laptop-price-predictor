@@ -38,30 +38,20 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="Ram">RAM (GB)</label>
-                <input type="number" id="Ram" name="Ram" value="8" min="2" max="64">
+                <label for="Inches">Screen Size (Inches)</label>
+                <input type="number" id="Inches" name="Inches" value="15.6" step="0.1" min="10" max="20">
             </div>
             <div class="form-group">
-                <label for="Weight">Weight (kg)</label>
-                <input type="number" id="Weight" name="Weight" value="2.0" step="0.1" min="0.5" max="5.0">
-            </div>
-            <div class="form-group">
-                <label for="Touchscreen">Touchscreen</label>
-                <select id="Touchscreen" name="Touchscreen">
-                    <option value="0">No</option>
-                    <option value="1">Yes</option>
+                <label for="ScreenResolution">Screen Resolution</label>
+                <select id="ScreenResolution" name="ScreenResolution">
+                    <option value="1366x768">1366x768</option>
+                    <option value="1920x1080">1920x1080 (Full HD)</option>
+                    <option value="2560x1440">2560x1440 (2K)</option>
+                    <option value="3840x2160">3840x2160 (4K)</option>
+                    <option value="1440x900">1440x900</option>
+                    <option value="1600x900">1600x900</option>
+                    <option value="2880x1800">2880x1800</option>
                 </select>
-            </div>
-            <div class="form-group">
-                <label for="Ips">IPS Display</label>
-                <select id="Ips" name="Ips">
-                    <option value="0">No</option>
-                    <option value="1">Yes</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="Ppi">PPI (Pixels Per Inch)</label>
-                <input type="number" id="Ppi" name="Ppi" value="141.21" step="0.01" min="100" max="400">
             </div>
             <div class="form-group">
                 <label for="Cpu">CPU</label>
@@ -72,6 +62,10 @@
                     <option value="AMD">AMD</option>
                     <option value="Other">Other</option>
                 </select>
+            </div>
+            <div class="form-group">
+                <label for="Ram">RAM (GB)</label>
+                <input type="number" id="Ram" name="Ram" value="8" min="2" max="64">
             </div>
             <div class="form-group">
                 <label for="HDD">HDD (GB)</label>
@@ -98,6 +92,10 @@
                     <option value="No OS">No OS</option>
                     <option value="Other">Other</option>
                 </select>
+            </div>
+            <div class="form-group">
+                <label for="Weight">Weight (kg)</label>
+                <input type="number" id="Weight" name="Weight" value="2.0" step="0.1" min="0.5" max="5.0">
             </div>
             <button class="btn w-full" onclick="predictPrice()">Predict Price</button>
             <div id="result" class="text-center"></div>

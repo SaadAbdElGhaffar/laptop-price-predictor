@@ -5,9 +5,9 @@ const API_URL = 'http://127.0.0.1:5000/predict';
 
 // Form validation rules
 const validationRules = {
+    Inches: { min: 10, max: 20 },
     Ram: { min: 2, max: 64 },
     Weight: { min: 0.5, max: 5.0 },
-    Ppi: { min: 100, max: 400 },
     HDD: { min: 0, max: 2000 },
     SSD: { min: 0, max: 2000 }
 };
@@ -40,7 +40,7 @@ async function predictPrice() {
         
         // Display result
         if (response.ok && result.price) {
-            showSuccess(`Predicted Price: $${result.price}`);
+            showSuccess(`Predicted Price: ₹${result.price}`);
         } else {
             showError(`Error: ${result.error || 'Unknown error occurred'}`);
         }
@@ -57,20 +57,16 @@ async function predictPrice() {
 function collectFormData() {
     const data = {};
     const formElements = [
-        'Company', 'TypeName', 'Ram', 'Weight', 'Touchscreen',
-        'Ips', 'Ppi', 'Cpu', 'HDD', 'SSD', 'Gpu', 'OpSys'
+        'Company', 'TypeName', 'Inches', 'ScreenResolution', 'Cpu', 
+        'Ram', 'HDD', 'SSD', 'Gpu', 'OpSys', 'Weight'
     ];
     
     formElements.forEach(elementId => {
         const element = document.getElementById(elementId);
         let value = element.value;
         
-        // Convert numeric fields
-        if (['Ram', 'Weight', 'Touchscreen', 'Ips', 'Ppi', 'HDD', 'SSD'].includes(elementId)) {
-            value = parseFloat(value);
-        }
-        
-        data[elementId] = value;
+        // Keep all values as strings for FullPipeline
+        data[elementId] = String(value);
     });
     
     return data;
@@ -167,16 +163,15 @@ function showError(message) {
 function resetForm() {
     document.getElementById('Company').value = 'Dell';
     document.getElementById('TypeName').value = 'Notebook';
-    document.getElementById('Ram').value = '8';
-    document.getElementById('Weight').value = '2.0';
-    document.getElementById('Touchscreen').value = '0';
-    document.getElementById('Ips').value = '0';
-    document.getElementById('Ppi').value = '141.21';
+    document.getElementById('Inches').value = '15.6';
+    document.getElementById('ScreenResolution').value = '1920x1080';
     document.getElementById('Cpu').value = 'Intel Core i5';
+    document.getElementById('Ram').value = '8';
     document.getElementById('HDD').value = '0';
     document.getElementById('SSD').value = '256';
     document.getElementById('Gpu').value = 'Intel';
     document.getElementById('OpSys').value = 'Windows';
+    document.getElementById('Weight').value = '2.0';
     
     clearValidationStates();
     document.getElementById('result').innerHTML = '';
@@ -189,44 +184,41 @@ function loadSampleConfig(configName) {
         budget: {
             Company: 'Acer',
             TypeName: 'Notebook',
-            Ram: 4,
-            Weight: 2.2,
-            Touchscreen: 0,
-            Ips: 0,
-            Ppi: 141.21,
+            Inches: '15.6',
+            ScreenResolution: '1366x768',
             Cpu: 'Intel Core i3',
-            HDD: 500,
-            SSD: 0,
+            Ram: '4',
+            HDD: '500',
+            SSD: '0',
             Gpu: 'Intel',
-            OpSys: 'Windows'
+            OpSys: 'Windows',
+            Weight: '2.2'
         },
         gaming: {
             Company: 'MSI',
             TypeName: 'Gaming',
-            Ram: 16,
-            Weight: 2.8,
-            Touchscreen: 0,
-            Ips: 1,
-            Ppi: 180,
+            Inches: '17.3',
+            ScreenResolution: '1920x1080',
             Cpu: 'Intel Core i7',
-            HDD: 0,
-            SSD: 512,
+            Ram: '16',
+            HDD: '0',
+            SSD: '512',
             Gpu: 'Nvidia',
-            OpSys: 'Windows'
+            OpSys: 'Windows',
+            Weight: '2.8'
         },
         premium: {
             Company: 'Apple',
             TypeName: 'Ultrabook',
-            Ram: 16,
-            Weight: 1.4,
-            Touchscreen: 0,
-            Ips: 1,
-            Ppi: 220,
+            Inches: '13.3',
+            ScreenResolution: '2560x1440',
             Cpu: 'Intel Core i7',
-            HDD: 0,
-            SSD: 512,
+            Ram: '16',
+            HDD: '0',
+            SSD: '512',
             Gpu: 'Intel',
-            OpSys: 'macOS'
+            OpSys: 'macOS',
+            Weight: '1.4'
         }
     };
     
