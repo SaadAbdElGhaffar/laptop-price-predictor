@@ -10,6 +10,7 @@ A comprehensive machine learning project that predicts laptop prices based on sp
 ## 🎥 Demo Video
 
 [🎥 Watch Demo](video/video.mp4)
+<video src="video.mp4" width="640" height="360" controls></video>
 ![Screenshot 1](video/image1.jpg)
 ![Screenshot 2](video/image2.jpg)
 ## 🚀 Features
