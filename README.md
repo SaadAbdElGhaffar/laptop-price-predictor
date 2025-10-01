@@ -8,15 +8,10 @@
 A comprehensive machine learning project that predicts laptop prices based on specifications using ensemble methods. Achieves **91.0% R² score**, **0.216 MAE**, and **0.292 RMSE** through advanced feature engineering and voting regression.
 
 ## 🎥 Demo Video
-
-<p align="center">
-  <a href="video/video.mp4">🎥 <b>Watch Demo</b></a>
-</p>
-
-<p align="center">
-  <img src="video/image1.jpg" alt="Screenshot 1" width="45%" style="margin:10px;"/>
-  <img src="video/image2.jpg" alt="Screenshot 2" width="45%" style="margin:10px;"/>
-</p>
+[Watch Demo](video/video.mp4) 
+## Screenshots
+![Screenshot 1](video/image1.jpg) 
+![Screenshot 2](video/image2.jpg)
 ## 🚀 Features
 
 - **High-Performance Model**: 91.0% R² score with voting regressor ensemble
