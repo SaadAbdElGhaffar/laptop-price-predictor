@@ -164,6 +164,7 @@ cython_debug/
 *.json
 data/
 !data/.gitkeep
+!src/data/
 
 # Model files
 *.pkl
